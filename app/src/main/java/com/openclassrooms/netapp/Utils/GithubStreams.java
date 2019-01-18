@@ -17,11 +17,15 @@ import io.reactivex.schedulers.Schedulers;
 
 public class GithubStreams {
 
+    //
+    // Nos controllers pourront s'inscrire et récupérer les émissions de données des ses observables
+    //
+
     public static Observable<List<GithubUser>> streamFetchUserFollowing(String username){
         GithubService gitHubService = GithubService.retrofit.create(GithubService.class);
         return gitHubService.getFollowing(username)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()) // opérateur pour executer l'observable dans un thread dédié
+                .observeOn(AndroidSchedulers.mainThread()) // permet à tous les subscribers d'écouter le flux de données sur le thread principal
                 .timeout(10, TimeUnit.SECONDS);
     }
 

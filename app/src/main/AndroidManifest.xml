@@ -18,6 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Controllers.Activities.DetailActivity"
+            android:parentActivityName="com.openclassrooms.netapp.Controllers.Activities.MainActivity" >
+        </activity>
     </application>
 
 </manifest>
